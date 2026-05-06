@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horas Técnicas</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    #header .left { display:flex; align-items:center; gap:10px; }
+    #chart-horas { min-height: 420px; width: 100%; }
+    .meta { opacity:.9; margin:8px 0 12px 0; font-size: .95rem }
+  
+    .tech-panel{margin: 10px 0 16px 0; padding: 16px; border:1px solid #1f2937; border-radius:12px; background:rgba(2,6,23,0.35)}
+    .tech-panel h2{margin:0 0 10px 0; font-size:1.05rem}
+    .stats-row{display:flex; gap:12px; flex-wrap:wrap; font-size:.95rem; opacity:.95}
+    .stats-row .stat{padding:6px 10px; border:1px solid #334155; border-radius:8px; background:#0b1220}
+    .progress-wrap{width:100%; background:#0b1220; border:1px solid #1f2937; border-radius:999px; height:18px; overflow:hidden; margin-top:10px}
+    .progress-bar{height:100%; width:0%; background:linear-gradient(90deg, #22c55e, #3b82f6); transition:width .4s ease}
+    
+    .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
+    .tcard{background:linear-gradient(180deg,var(--card,#111827),var(--card2,#0b1220));border:1px solid #1f2937;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .tcard header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #1f2937}
+    .tcard header .name{font-weight:700}
+    .tcard .body{padding:12px;display:flex;gap:12px;align-items:center}
+    .tcard .metrics{display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+    .pill{display:inline-block;font-size:.85rem;padding:4px 8px;border-radius:999px;border:1px solid #334155;background:#0b1220}
+    canvas.donut{width:110px;height:110px}
+    
+    .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:10px}
+    .tcard{background:linear-gradient(180deg,var(--card,#111827),var(--card2,#0b1220));border:1px solid #1f2937;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.20)}
+    .tcard header.center{position:relative; display:flex; justify-content:center; align-items:center; padding:10px 12px; border-bottom:1px solid #1f2937}
+    .tcard header.center .name{font-weight:700; text-align:center}
+    .tcard header.center .os-pill{position:absolute; right:10px; top:8px; font-size:.8rem; padding:4px 8px; border-radius:999px; border:1px solid #334155; background:#0b1220}
+    .tcard .body{padding:12px; display:flex; flex-direction:column; align-items:center; gap:10px}
+    .donut-wrap{position:relative; width:130px; height:130px}
+    canvas.donut{width:130px;height:130px}
+    .donut-center{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; line-height:1.1}
+    .donut-center .big{font-size:1.35rem; font-weight:800}
+    .donut-center .sub{font-size:.70rem; color:var(--muted,#94a3b8)}
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div id="header" class="toolbar">
+      <div class="left">
+        <h1>Horas Técnicas</h1>
+      </div>
+      <div class="right">
+        <label>Período
+          <select id="sel-dia">
+            <option value="hoje">1 dia</option>
+            <option value="semana">1 semana</option>
+            <option value="mes">Mensal</option>
+          </select>
+        </label>
+        <label>Atualização
+          <select id="sel-poll">
+            <option value="1000">1s</option>
+            <option value="2000">2s</option>
+            <option value="3000" selected>3s</option>
+            <option value="5000">5s</option>
+            <option value="10000">10s</option>
+          </select>
+        </label>
+        <button id="btn-export-csv" class="btn btn-light">Baixar CSV</button>
+        <button id="btn-reset" class="btn btn-danger" title="Zerar cartões do período selecionado (registros arquivados)">Reset cartões</button>
+        <a href="index.html" class="btn btn-light">Voltar ao Dashboard</a>
+      </div>
+    </div>
+      
+    </div>
+<div class="stat">        <div class="stat">        <div class="stat">      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="pt-bar"></div></div>
+    </div>
+
+    <div id="tech-grid" class="tech-grid"></div>
+        
+    
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <script src="hours_local.js"></script>
+</body>
+</html>

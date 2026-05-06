@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rohden OS – Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="topbar">
+    <h1>Rohden OS</h1>
+    <div class="filters">
+      <label>Status
+        <select id="filter-status">
+          <option>Todas</option>
+          <option>Abertas</option>
+          <option>Aceitas</option>
+          <option>Encerradas</option>
+          <option>Arquivadas</option>
+        </select>
+      </label>
+      <label>Setor
+        <select id="filter-sector">
+          <option>Todos</option>
+          <option>1</option>
+          <option>2</option>
+        </select>
+      </label>
+    </div>
+    <div class="toolbar-actions">
+      <a href="hours.html" class="btn btn-light">Horas Técnicas</a>
+      <button id="btn-clean-dups" class="btn btn-light">Excluir duplicatas</button>
+      <button id="btn-del-all" class="btn btn-danger">Excluir TODOS</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="cards" class="cards"></div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+  <script src="os_logger.js"></script>
+</body>
+</html>
